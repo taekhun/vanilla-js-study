@@ -2,10 +2,8 @@ import Component from "../core/Component.js";
 
 export default class MusicInfo extends Component {
   template() {
-    const { title } = this.$props;
-
     return `
-        <h4 id="title">${title}</h4>
+        <h4 id="title">${this.$props.title}</h4>
         <div class="progress-container" id="progress-container">
           <div class="progress" id="progress"></div>
         </div>
@@ -13,7 +11,6 @@ export default class MusicInfo extends Component {
   }
 
   setEvent() {
-    const { moveAudio } = this.$props;
-    this.addEvent("click", "#progress-container", moveAudio);
+    this.addEvent("click", "#progress-container", this.$props.moveAudio);
   }
 }

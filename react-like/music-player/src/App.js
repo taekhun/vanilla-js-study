@@ -13,12 +13,11 @@ export default class App extends Component {
 
   template() {
     const { index, isPlaying } = this.$state;
-
     return ` 
       <h1>Music Player</h1>
       <div class="music-container${isPlaying ? ` play` : ``}" id="music-container">
         <div class="music-info"></div>
-        <audio src="music/${this.musicList[index]}.mp3" id="audio" ${this.$state.isPlaying && `autoplay`}></audio>
+        <audio src="music/${this.musicList[index]}.mp3" id="audio" ${isPlaying && `autoplay`}></audio>
         <div class="img-container">
           <img src="images/${this.musicList[index]}.jpg" alt="music-cover" id="cover" />
         </div>
