@@ -78,8 +78,8 @@ h1 {
 .loader {
   opacity: 0;
   display: flex;
-  position: fixed;
-  bottom: 50px;
+  /* position: fixed; */
+  /* bottom: 50px; */
   transition: opacity 0.3s ease-in;
 }
 

@@ -16,13 +16,12 @@ export default class Loader extends Component {
   }
 
   mounted() {
-    // this.addIO();
+    this.addIO();
   }
 
   addIO() {
     const { pageNext } = this.$props;
-
-    const $loader = this.$target;
+    const $loader = this.$target.querySelector(".loader");
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.intersectionRatio > 0) {

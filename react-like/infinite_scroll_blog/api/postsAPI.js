@@ -1,4 +1,4 @@
-export const fetcher = async (URL) => {
+const fetcher = async (URL) => {
   try {
     const response = await fetch(URL);
     if (!response.ok) throw new Error("서버 상태가 이상합니다!");
@@ -8,7 +8,7 @@ export const fetcher = async (URL) => {
   }
 };
 
-export const getPosts = async (limit, page) => {
-  const data = await fetcher(`https://jsonplaceholder.typicode.com/posts?_limit=${limit}&_page=${page}`);
-  return data;
-};
+export const getPosts = async (limit, page) =>
+  await fetcher(`https://jsonplaceholder.typicode.com/posts?_limit=${limit}&_page=${page}`);
+
+//출처 : 문군

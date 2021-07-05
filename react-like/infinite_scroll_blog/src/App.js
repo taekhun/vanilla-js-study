@@ -47,6 +47,9 @@ export default class App extends Component {
   }
 
   pageNext() {
+    //Todo: 초반에 5개만 나오게 수정
+
+    if (this.$state.page >= 20) return;
     this.setState({ page: this.$state.page + 1 });
     this.appendPosts(this.$state.limit, this.$state.page);
   }
