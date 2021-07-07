@@ -7,7 +7,7 @@ import { getPosts } from "../api/postsAPI.js";
 export default class App extends Component {
   setup() {
     this.setState({ limit: 5, page: 1, isLoading: false });
-    this.fetchPosts(this.$state.limit, this.$state.page);
+    this.fetchPosts();
   }
 
   template() {
@@ -42,23 +42,28 @@ export default class App extends Component {
   }
 
   //prop methods
-  async fetchPosts(limit, page) {
+  async fetchPosts() {
+    const { limit, page } = this.$state;
+
     const posts = await getPosts(limit, page);
     this.setState({ posts });
   }
 
-  async appendPosts(limit, page) {
+  async appendPosts() {
+    const { limit, page } = this.$state;
+
     this.setState({ isLoading: true });
     const posts = await getPosts(limit, page);
     this.setState({ isLoading: false });
-
     this.setState({ posts: [...this.$state.posts, ...posts] });
   }
 
   pageNext() {
-    if (this.$state.page >= 20) return;
-    this.setState({ page: this.$state.page + 1 });
-    this.appendPosts(this.$state.limit, this.$state.page);
+    const { limit, page } = this.$state;
+
+    if (limit * page >= 100) return;
+    this.setState({ page: page + 1 });
+    this.appendPosts();
   }
 
   filterPosts({ target: { value } }) {
