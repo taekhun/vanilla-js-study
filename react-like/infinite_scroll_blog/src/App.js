@@ -32,6 +32,15 @@ export default class App extends Component {
     new LoaderContainer($loaderContainer, { isLoading: this.$state.isLoading, pageNext: this.pageNext.bind(this) });
   }
 
+  setEvent() {
+    window.addEventListener("scroll", () => {
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight - 5) {
+        this.pageNext();
+      }
+    });
+  }
+
   //prop methods
   async fetchPosts(limit, page) {
     const posts = await getPosts(limit, page);
@@ -47,8 +56,6 @@ export default class App extends Component {
   }
 
   pageNext() {
-    //Todo: 초반에 5개만 나오게 수정
-
     if (this.$state.page >= 20) return;
     this.setState({ page: this.$state.page + 1 });
     this.appendPosts(this.$state.limit, this.$state.page);

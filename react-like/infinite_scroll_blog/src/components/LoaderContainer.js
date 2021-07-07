@@ -4,10 +4,8 @@ export default class Loader extends Component {
   setup() {}
 
   template() {
-    const { isLoading } = this.$props;
-
     return `
-      <div class="loader${isLoading ? ` show` : ``}" >
+      <div class="loader${this.$props.isLoading ? ` show` : ``}" >
         <div class="circle"></div>
         <div class="circle"></div>
         <div class="circle"></div>
@@ -15,21 +13,24 @@ export default class Loader extends Component {
     `;
   }
 
-  mounted() {
-    this.addIO();
-  }
+  mounted() {}
 
-  addIO() {
-    const { pageNext } = this.$props;
-    const $loader = this.$target.querySelector(".loader");
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.intersectionRatio > 0) {
-          pageNext();
-        }
-      });
-    });
+  setEvent() {}
 
-    io.observe($loader);
-  }
+  // addIO() {
+  //   const { pageNext } = this.$props;
+  //   const $loader = this.$target.querySelector(".loader");
+  //   const ioOption = {
+  //     rootMargin: "0px",
+  //   };
+
+  //   const io = new IntersectionObserver((entries) => {
+  //     entries.forEach((entry) => {
+  //       if (entry.intersectionRatio > 0.5) {
+  //         pageNext();
+  //       }
+  //     });
+  //   }, ioOption);
+  //   io.observe($loader);
+  // }
 }
